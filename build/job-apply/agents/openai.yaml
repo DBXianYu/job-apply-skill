@@ -1,0 +1,4 @@
+interface:
+  display_name: "Job Apply"
+  short_description: "Safely prepare and track job applications"
+  default_prompt: "Use $job-apply to prepare this job application from the provided URL and pause before final submission."

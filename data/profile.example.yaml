@@ -1,0 +1,165 @@
+schema_version: 2
+
+basic:
+  name_zh: "示例姓名"
+  name_en: "Example Name"
+  gender: "示例：男/女/其他（请按本人确认值填写）"
+  birth_date: "2000-01-31"
+  phone:
+    country_code: "+86"
+    number: "13800000000"
+  email: "candidate@example.com"
+  current_location:
+    country_or_region: "中国大陆"
+    province: "上海"
+    city: "上海"
+  native_place: "示例：江苏南京"
+  ethnicity: "示例：汉族"
+  political_status: "示例：群众"
+  marital_status: "示例：未婚"
+  photo_path: "documents/example-photo.jpg"
+  self_evaluation: "示例：用已确认的事实概括能力、特长和协作方式。"
+
+identification:
+  document_type: "示例：中国居民身份证"
+  document_number: "示例：仅在实际 profile.yaml 中填写本人证件号码"
+  issuing_country_or_region: "中国大陆"
+
+education:
+  - school: "示例大学"
+    country_or_region: "中国大陆"
+    province: "上海"
+    city: "上海"
+    college: "示例学院"
+    major: "计算机科学与技术"
+    degree: "本科"
+    study_mode: "全日制"
+    start_date: "2022-09"
+    end_date: "2026-06"
+    gpa: "3.80"
+    gpa_scale: "4.00"
+    rank: "前 10%"
+    student_id: "示例学号"
+    research_direction: "机器学习"
+    advisor_name: "示例导师"
+    is_national_key_laboratory: false
+    is_student_cadre: false
+    courses: ["数据结构", "机器学习"]
+
+internships:
+  - company: "示例科技有限公司"
+    department: "研发部"
+    role: "软件工程实习生"
+    employment_type: "internship"
+    location: {country_or_region: "中国大陆", province: "上海", city: "上海"}
+    start_date: "2025-07"
+    end_date: "2025-09"
+    resume_text: |-
+      · 示例：保留简历中该段实习的直接表述，仅移除排版换行。
+    responsibilities: ["示例：描述本人实际负责的工作。"]
+    technologies: ["Python", "Docker"]
+
+projects:
+  - name: "示例项目"
+    role: "项目成员"
+    start_date: "2025-01"
+    end_date: "2025-05"
+    resume_text: |-
+      · 示例：保留简历中该项目的直接表述、数据和术语。
+    description: "示例：一句话说明项目目标。"
+    responsibilities: ["示例：描述本人实际完成的任务。"]
+    technologies: ["PyTorch"]
+    outcomes: ["示例：仅填写有来源支持的量化结果。"]
+
+research:
+  - name: "示例科研项目"
+    role: "主要负责人"
+    start_date: "2025-03"
+    end_date: "2025-08"
+    resume_text: |-
+      · 示例：保留简历中该科研经历的直接表述和指标。
+    paper_title: "Example Paper Title"
+    datasets: ["Example Dataset"]
+    responsibilities: ["示例：论文复现、实验设计或分析工作。"]
+    technologies: ["PyTorch"]
+    outcomes: ["示例：准确率 90.0%。"]
+
+skills:
+  - category: "编程语言"
+    items: ["Python", "C++"]
+
+languages:
+  - language: "英语"
+    proficiency: "熟练"
+    certificate: "大学英语六级"
+    score: "500"
+    score_scale: "710"
+
+publications:
+  - title: "Example Publication"
+    authors: ["Example Name"]
+    venue: "Example Venue"
+    date: "2025-06"
+    status: "published"
+    url: "https://example.com/publication"
+
+patents:
+  - title: "示例专利"
+    patent_number: "示例专利号"
+    date: "2025-06"
+    status: "granted"
+    inventors: ["示例姓名"]
+
+academic_conferences:
+  - name: "示例学术会议"
+    date: "2025-07"
+    role: "参会者"
+    details: "示例：如实描述报告或交流内容。"
+
+competition_awards:
+  - name: "示例竞赛奖项"
+    level: "全国"
+    rank_or_prize: "一等奖"
+    date: "2025-05"
+    description: "示例：说明竞赛背景及本人贡献。"
+
+scholarships:
+  - name: "示例奖学金"
+    level: "校级"
+    date: "2025-10"
+    description: "示例：奖学金等级或评选依据。"
+
+certificates:
+  - name: "示例资格证书"
+    issuer: "示例机构"
+    date: "2025-04"
+    score: null
+
+attachments:
+  - type: "resume"
+    path: "resumes/general.pdf"
+    description: "通用简历"
+
+company_specific:
+  example_company:
+    prior_work_experience: false
+    relatives_current_or_former_employee: false
+    relatives:
+      - name: "示例亲属"
+        relationship: "示例关系"
+        department: "示例部门"
+
+links:
+  github: "https://github.com/example"
+  homepage: "https://example.com"
+
+job_preferences:
+  job_types: ["campus", "internship"]
+  directions: ["machine-learning"]
+  preferred_cities: ["上海"]
+  accept_location_change: false
+  accept_position_adjustment: false
+  expected_salary: "示例：由本人确认后填写"
+  willing_to_travel: false
+  willing_to_work_overtime: false
+  willing_for_overseas_assignment: false

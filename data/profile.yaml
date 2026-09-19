@@ -1,0 +1,56 @@
+schema_version: 2
+
+basic:
+  name_zh: null
+  name_en: null
+  gender: null
+  birth_date: null
+  phone:
+    country_code: "+86"
+    number: null
+  email: null
+  current_location:
+    country_or_region: null
+    province: null
+    city: null
+  native_place: null
+  ethnicity: null
+  political_status: null
+  marital_status: null
+  photo_path: null
+  self_evaluation: null
+
+identification:
+  document_type: null
+  document_number: null
+  issuing_country_or_region: null
+
+education: []
+internships: []
+projects: []
+research: []
+skills: []
+languages: []
+publications: []
+patents: []
+academic_conferences: []
+competition_awards: []
+scholarships: []
+certificates: []
+attachments: []
+company_specific: {}
+
+links:
+  github: null
+  homepage: null
+
+job_preferences:
+  job_types: []
+  directions: []
+  preferred_cities: []
+  accept_location_change: null
+  accept_position_adjustment: null
+  expected_salary: null
+  willing_to_travel: null
+  willing_to_work_overtime: null
+  willing_for_overseas_assignment: null

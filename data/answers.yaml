@@ -1,0 +1,24 @@
+objective:
+  self_introduction: null
+  career_plan: null
+  strengths: null
+  weaknesses: null
+
+behavioral:
+  teamwork: null
+  leadership: null
+  conflict: null
+  difficult_project: null
+  failure: null
+  biggest_challenge: null
+
+preferences:
+  willing_to_relocate: null
+  willing_to_adjust_position: null
+  preferred_city: null
+  expected_salary: null
+  willing_to_travel: null
+  willing_to_work_overtime: null
+  willing_for_overseas_assignment: null
+
+companies: {}

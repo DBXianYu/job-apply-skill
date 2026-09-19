@@ -1,0 +1,21 @@
+# Local job/application context
+*_resume_context.txt
+
+# Resumes and supporting documents
+resumes/
+documents/
+
+# Python-generated files
+__pycache__/
+*.py[cod]
+
+# Local environment and secret files
+.env
+.env.*
+!.env.example
+
+# Editor and OS metadata
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

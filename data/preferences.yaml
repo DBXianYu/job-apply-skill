@@ -1,0 +1,36 @@
+resume_rules:
+  cv:
+    keywords:
+      - computer vision
+      - 图像
+      - 视觉
+      - segmentation
+      - detection
+  nlp:
+    keywords:
+      - NLP
+      - 自然语言处理
+      - 大语言模型
+      - LLM
+      - 文本
+      - 语言模型
+  multimodal:
+    keywords:
+      - multimodal
+      - 多模态
+      - vision-language
+      - VLM
+  agent:
+    keywords:
+      - agent
+      - 智能体
+      - tool use
+      - function calling
+  ai:
+    keywords:
+      - artificial intelligence
+      - 人工智能
+      - machine learning
+      - 机器学习
+      - deep learning
+      - 深度学习

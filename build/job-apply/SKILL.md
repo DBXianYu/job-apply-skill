@@ -1,22 +1,27 @@
 ---
 name: job-apply
-description: Prepare and track a single job application from a recruiting-site URL by reading the JD, semantically mapping form fields to confirmed profile data, selecting and uploading a resume, and pausing for user decisions, verification, legal consent, and final submission. Use for campus, internship, or experienced-hire applications; do not use for bulk applications or bypassing access controls.
+description: Prepare one job application or update one recruiting-site resume profile from a supplied URL using confirmed candidate data, with duplicate checks for job applications and pauses for user decisions, verification, consent, saving, and submission. Do not use for bulk applications or bypassing access controls.
 ---
 
 # Job Apply
 
-Prepare one application safely from URL to a completed, reviewable form. Personal data lives outside this skill in `${JOB_APPLY_HOME:-$HOME/.codex/job-apply}`. Never copy personal facts into the skill directory.
+Prepare one application or recruiting-site resume update safely from URL to a completed, reviewable form. Personal data lives outside this skill in `${JOB_APPLY_HOME:-$HOME/.codex/job-apply}`. Never copy personal facts into the skill directory.
 
 ## Start
 
 1. Resolve the data home with `python scripts/profile.py home` and run `python scripts/validate_profile.py`. Read [references/profile-schema.md](references/profile-schema.md) when interpreting or updating personal data. `${JOB_APPLY_HOME}/profile.example.yaml` contains format examples only and must never be used as candidate facts.
 2. Read [references/workflow.md](references/workflow.md) for the end-to-end procedure and stopping rules.
-3. Before filling, run `python scripts/tracker.py check <job-url>`; after extracting company and job ID, also pass `--company` and `--job-id`. Stop on a submitted or otherwise active duplicate unless the user explicitly decides how to proceed.
-4. Read [references/field-mapping.md](references/field-mapping.md) when mapping form labels and sections to profile or answer keys. Read [references/site-adapters.md](references/site-adapters.md) only after the generic workflow fails or a known stable special flow is encountered.
+3. Classify the request before loading job-specific resources:
+   - `resume_update`: the user wants to create, complete, or update the recruiting site's reusable resume/profile, and no specific job is being applied to.
+   - `job_application`: the request targets a specific job or includes applying/submitting for a role.
+4. For `job_application`, before filling run `python scripts/tracker.py check <job-url>`; after extracting company and job ID, also pass `--company` and `--job-id`. Stop on a submitted or otherwise active duplicate unless the user explicitly decides how to proceed. Skip application tracking and resume selection for `resume_update` unless a specific job is later selected.
+5. Read [references/field-mapping.md](references/field-mapping.md) when mapping form labels and sections to profile or answer keys. Read [references/site-adapters.md](references/site-adapters.md) only after the generic workflow fails or a known stable special flow is encountered.
 
 ## Browser strategy
 
 Prefer the current Codex browser/computer-use capability. Use a repeated `open -> snapshot -> understand -> fill/select/click/upload -> snapshot` loop. Locate controls by label, role, nearby text, section, input type, and semantic meaning; do not rely on brittle selectors alone.
+
+Before editing an existing resume/profile, read the current values and build a small difference plan: unchanged fields, changed fields, new repeated records, unresolved choices, and files that would be replaced. Do not rewrite fields whose current normalized value already matches confirmed data. After one instance of a repeated custom control has been verified, batch equivalent deterministic interactions when the browser capability safely supports it, then verify the resulting values once.
 
 If terminal browser automation is genuinely needed, first check `npx` and `${CODEX_HOME:-$HOME/.codex}/skills/playwright`. Use the official Playwright skill when available. Do not create a Selenium or Playwright framework inside this skill.
 
@@ -28,10 +33,12 @@ Extract and retain the company, title, job ID, location, category, full JD, recr
 - Treat `profile.example.yaml` and any key named `example` as documentation, never as fillable data.
 - For internship, project, and research narrative fields, use the record's `resume_text` by default when it is present. It preserves the resume's direct wording with layout-only line breaks removed. Keep the structured fields for matching, short fields, and form sections. Shorten or reorganize `resume_text` only when the target field requires it, and never change facts or metrics.
 - Reuse `answers.yaml` when a question is semantically equivalent. Lightly tailor wording to the JD while preserving every fact, commitment, and preference.
-- Select a resume with `python scripts/profile.py choose-resume --jd-file <file>`. The command applies `preferences.yaml` keyword rules and falls back to `general.pdf`. If the selected file does not exist, pause and report its path.
+- For `job_application`, select a resume with `python scripts/profile.py choose-resume --jd-file <file>`. The command applies `preferences.yaml` keyword rules and falls back to `general.pdf`. If the selected file does not exist, pause and report its path. For `resume_update`, do not select or replace an attachment unless the user requested it.
 - Treat empty strings, null values, missing keys, and empty lists as unknown. Never infer an unknown value from convention or from another field.
 
 Pause for CAPTCHA, SMS codes, MFA, QR login, face verification, personal choices, sensitive attributes, legal declarations, privacy/background-check consent, non-compete statements, or any uncertain fact. The user must perform authentication steps and explicitly decide or consent where required.
+
+When pausing with an unsaved browser form, preserve or hand off the active tab when the browser capability supports it, state that the form is not yet saved, and warn the user not to leave the editor. On resume, verify the tab URL and a representative changed field before continuing; do not assume unsaved state survived.
 
 ## Submission boundary
 
@@ -43,6 +50,8 @@ Never activate the final `Submit`, `Apply`, `Confirm Application`, or an equival
 - reused or adapted free-text answers;
 - any resume wording that was shortened or reorganized because of a field limit;
 - every unresolved field, choice, warning, and declaration.
+
+For `resume_update`, treat the site's final `Save` or equivalent action as the boundary. Before asking for confirmation, summarize changed and added fields, unchanged files/photos, missing optional fields, any cross-section mapping such as research placed under projects, and any privacy-policy or legal-consent effect attached to saving. Saving a reusable resume does not authorize applying to a job.
 
 After explicit confirmation, submit once and inspect the resulting page. Record `submitted` only when the site provides credible success evidence. Otherwise record `prepared` or a truthful note; never manufacture success.
 

@@ -54,7 +54,7 @@ Use the relevant education entry based on level, dates, and form section. “Hig
 | --- | --- | --- |
 | `internships[]` | 实习经历, internship, student work experience | Use confirmed entries only. |
 | `projects[]` | 项目经历, project experience, portfolio project | Select relevant entries without changing facts. |
-| `research[]` | 科研经历, research experience, publication/research project | Do not invent publication status. |
+| `research[]` | 科研经历, research experience, publication/research project | Prefer a dedicated research section. If none exists, map confirmed research records into project experience while preserving title, role, dates, `resume_text`, technologies, and outcomes; disclose the mapping and do not invent publication status. |
 | `awards[]` | 奖项, 荣誉, scholarship, award | Preserve title, issuer, level, and date. |
 | `skills[]` | 技术栈, 技能, programming language, tools | Choose stored relevant skills. |
 | `languages[]` | 语言情况, 语言名称, 熟练程度, 语言证书及成绩 | Keep certificate score as a quoted string. |
